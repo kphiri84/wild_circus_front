@@ -1,0 +1,38 @@
+.ui.table {
+    width: 100% !important;
+    border-bottom: 1px solid black !important;
+}
+
+.ui.table thead th{
+    background-color: #dc3545 !important;
+    color: white !important;
+}
+
+.recap{
+    /* border: 1px solid #C4C9C7 !important;
+    border-radius: 2px; */
+    height: 220px;
+    margin-top: 20%;
+}
+
+.center{
+    text-align: center;
+}
+
+.recaptable{
+    width: 400px;
+    position: fixed;
+}
+
+td{
+    border: 0px solid black !important;
+}
+
+tr{
+    border: 0px solid black !important;
+}
+
+.para,
+.nombres {
+    text-align: left !important;
+}

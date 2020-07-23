@@ -1,0 +1,47 @@
+  .valid {
+    border-color: green;
+  }
+  
+  .invalid {
+    border-color: red;
+  }
+  
+  table {
+    width: 100%;
+    text-align: left;
+    margin-top: 20px;
+  }
+  
+  table input {
+    max-width: 60vw;
+    max-height: 5vh;
+    margin: 5px;
+  }
+  
+  table tr {
+    height: 2vh;
+  }
+  
+  .modif_button {
+    background-color: #dc3545;
+    border: none;
+    margin-bottom: 1em;
+    border-radius: 20px;
+    font-family: "Open Sans", sans-serif;
+    color: white;
+    height: 3em;
+    width: 15em;
+  }
+  
+  .entete {
+    font-weight: bold;
+    font-size: 18px;
+    border-bottom: 1px solid #00a0c8;
+    color: #dc3545;
+    height: 5px;
+  }
+  
+  .valeur {
+    font-size: 16px;
+  }
+  
