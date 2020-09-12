@@ -1,13 +1,35 @@
-.navbar-expand-md{
-    height: 100px;
-    position: sticky !important;
-    top: 0;
-    z-index: 200;
+.navbar-expand-md {
+	height: 100px;
+	position: sticky !important;
+	top: 0;
+	z-index: 200;
 }
 
-.navbar-nav, 
+.navbar-nav,
 .nav-link {
-    color: white !important;
-    font-size: 14px !important;
-    font-weight: bold !important;
+	color: white !important;
+	font-size: 14px !important;
+	font-weight: bold !important;
+}
+
+.power {
+	font-size: 25px !important;
+	color: white;
+	padding-left: 15px;
+}
+
+.power:hover {
+	font-size: 25px !important;
+	color: red;
+	padding-left: 15px;
+}
+
+.power {
+	margin-right: 15px !important;
+}
+
+.logo {
+	height: 200px;
+	width: auto;
+	margin-top: 50px;
 }

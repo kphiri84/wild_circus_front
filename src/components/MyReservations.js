@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Table } from 'semantic-ui-react';
+<<<<<<< HEAD
 import './myreservations.css';
+=======
+>>>>>>> f2586d415fa3c0e69dbfd2bfb3f828344f7183c9
 import axios from 'axios';
 
 const MyReservations = () => {

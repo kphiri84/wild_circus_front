@@ -1,139 +1,239 @@
-import React, {useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react';
 import { Container, Row, Col } from 'reactstrap';
-import { Table, Button } from 'semantic-ui-react'
+import { Button } from 'semantic-ui-react';
 import NavigBar from './NavigBar';
-import "./achats.css";
-import axios from 'axios'
+import NavigBar2 from './NavigBar2';
+import './achats.css';
+import axios from 'axios';
 
 const Achats = () => {
+	const [ billet, setBillet ] = useState([]);
 
-    const [billet, setBillet] = useState([])
+	useEffect(() => {
+		getBillet();
+	}, []);
 
-  useEffect(() =>{
-    getBillet()
-  }, [])
+	const [ category, setCategory ] = useState('');
+	const [ quantity, setQuantity ] = useState(0);
+	const [ quantity2, setQuantity2 ] = useState(0);
+	const [ quantity3, setQuantity3 ] = useState(0);
+	let tAdult = 0;
+	let tChildren = 0;
+	let tReduit = 0;
+	let totale = 0;
 
-  const getBillet = () =>{
-      axios.get("http://localhost:3001/billets")
-        .then(response => setBillet(response.data))
-    }
+	const getCategory = (e) => {
+		setCategory(e.target.value);
+	};
+	const getQuantity2 = (e) => {
+		setQuantity2(e.target.value);
+	};
 
-  return (
-    <div className="App">
-      <NavigBar />
-      <Container>
-      <Col md='12'>
-      <Row className = "tarif">
-      <Col md='8'>
+	const getQuantity3 = (e) => {
+		setQuantity3(e.target.value);
+	};
 
-  <Table celled structured>
-    <Table.Header>
-      <Table.Row>
-        <Table.HeaderCell textAlign='center' rowSpan='2' className="color">Catégories</Table.HeaderCell>
-        <Table.HeaderCell textAlign='center' rowSpan='2' className="color">Tarifs</Table.HeaderCell>
-        <Table.HeaderCell textAlign='center' rowSpan='2' className="color">Montant</Table.HeaderCell>
-        <Table.HeaderCell textAlign='center' colSpan='3' className="color">Nombres</Table.HeaderCell>
-      </Table.Row>
-    </Table.Header>
+	const getQuantity = (e) => {
+		setQuantity(e.target.value);
+	};
 
-    <Table.Body>
-    {billet.map(e =>
-    <>
-        <Table.Row>
-    <Table.Cell textAlign='center' verticalAlign= 'middle' rowSpan='3'>{e.category}</Table.Cell>
-        <Table.Cell textAlign='center'>Adultes</Table.Cell>
-        <Table.Cell textAlign='center'>{e.adults} €</Table.Cell>
-        <Table.Cell textAlign='center'>
-            <select>
-                <option value="">Nombre de places</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-                <option value="7">7</option>
-                <option value="8">8</option>
-                <option value="9">9</option>
-                <option value="10">10</option>
-            </select>
-        </Table.Cell>
-      </Table.Row>
-      <Table.Row>
-        <Table.Cell textAlign='center'>Enfants</Table.Cell>
-        <Table.Cell textAlign='center'>{e.children} €</Table.Cell>
-        <Table.Cell textAlign='center'><select>
-                <option value="">Nombre de places</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-                <option value="7">7</option>
-                <option value="8">8</option>
-                <option value="9">9</option>
-                <option value="10">10</option>
-            </select>
-            </Table.Cell>
-      </Table.Row>
-      <Table.Row>
-        <Table.Cell textAlign='center'>Tarif réduit</Table.Cell>
-        <Table.Cell textAlign='center'>{e.reduit} €</Table.Cell>
-        <Table.Cell textAlign='center'><select>
-                <option value="">Nombre de places</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-                <option value="7">7</option>
-                <option value="8">8</option>
-                <option value="9">9</option>
-                <option value="10">10</option>
-            </select>
-            </Table.Cell>
-      </Table.Row>
-      </>
-    )}
-    </Table.Body>
-  </Table>
-      </Col>
-      <Col className= "recap" md="4">
-      <h3 className="center recaptable">Récapitulatif</h3>
-      <br />
-      <table className="recaptable">
-            <tbody>
-                <tr height="25px">
-                    <td className="para" >Adultes</td>
-                    <td className="nombres" valign= 'middle' align='right'>20€</td>
-                </tr>
-                <tr height="25px">
-                    <td className="para" >Enfants</td>
-                    <td className="nombres" valign= 'middle' align='right'>20€</td>
-                </tr>
-                <tr height="25px">
-                    <td className="para" >Tarifs</td>
-                    <td className="nombres" valign= 'middle' align='right'>20€</td>
-                </tr>
-            </tbody>
-            <tfoot>
-                <tr height="25px">
-                    <td className="para" >TOTAL :</td>
-                    <td className="nombres" valign= 'middle' align='right'>20€</td>
-                </tr>
-                <tr height="25px">
-                    <Button>Valider</Button>
-                </tr>
-            </tfoot>                                  
-        </table>
-      </Col>
-    </Row>
-    </Col>
-    </Container>
-    </div>
-  );
-}
+	const getBillet = () => {
+		axios.get('http://localhost:3001/billets').then((response) => setBillet(response.data));
+	};
+
+	const postRegister = (e) => {
+		e.preventDefault();
+		const newReser = {
+			reservationDate: new Date(),
+			sessionStart: '2020-12-12',
+			sessionEnd: '2020-12-12',
+			adults: quantity,
+			children: quantity3,
+			reduit: quantity2,
+			price: totale,
+			category: category
+		};
+		console.log(newReser);
+		axios.post('http://localhost:3001/reservations', newReser).then(alert('Reservation bien enregistré'));
+	};
+
+	const token = localStorage.usertoken;
+	return (
+		<div className="App">
+			{!token ? <NavigBar /> : <NavigBar2 />}
+			<Container>
+				<Col md="12">
+					<Row className="tarif">
+						<Col md="8">
+							<h3>CATEGORIES</h3>
+							{billet.map((f) => (
+								<div onClick={() => setCategory(f.category)} className="tour">
+									<p>{f.category}</p>
+								</div>
+							))}
+						</Col>
+						{billet.filter((f) => f.category === category).map((j) => {
+							return (
+								<Col className="recap" md="4">
+									{console.log(category)}
+									<h3 className="center recaptable">Récapitulatif</h3>
+									<h4 className="center recaptable"> {j.category}</h4>
+									<br />
+									<form onSubmit={postRegister}>
+										<table className="recaptable">
+											<tbody>
+												<tr height="25px">
+													<td className="para">Adultes</td>
+													<td className="para">
+														<select>
+															<option onClick={(e) => getQuantity(e)} value={0}>
+																0
+															</option>
+															<option onClick={(e) => getQuantity(e)} value={1}>
+																1
+															</option>
+															<option onClick={(e) => getQuantity(e)} value={2}>
+																2
+															</option>
+															<option onClick={(e) => getQuantity(e)} value={3}>
+																3
+															</option>
+															<option onClick={(e) => getQuantity(e)} value={4}>
+																4
+															</option>
+															<option onClick={(e) => getQuantity(e)} value={5}>
+																5
+															</option>
+															<option onClick={(e) => getQuantity(e)} value={6}>
+																6
+															</option>
+															<option onClick={(e) => getQuantity(e)} value={7}>
+																7
+															</option>
+															<option onClick={(e) => getQuantity(e)} value={8}>
+																8
+															</option>
+															<option onClick={(e) => getQuantity(e)} value={9}>
+																9
+															</option>
+															<option onClick={(e) => getQuantity(e)} value={10}>
+																10
+															</option>
+														</select>
+													</td>
+													<td className="nombres" valign="middle" align="right">
+														{' '}
+														{(tAdult = j.adults * quantity)}€
+													</td>
+												</tr>
+												<tr height="25px">
+													<td className="para">Enfants</td>
+													<td className="para">
+														<select>
+															<option onClick={(e) => getQuantity3(e)} value={0}>
+																0
+															</option>
+															<option onClick={(e) => getQuantity3(e)} value={1}>
+																1
+															</option>
+															<option onClick={(e) => getQuantity3(e)} value={2}>
+																2
+															</option>
+															<option onClick={(e) => getQuantity3(e)} value={3}>
+																3
+															</option>
+															<option onClick={(e) => getQuantity3(e)} value={4}>
+																4
+															</option>
+															<option onClick={(e) => getQuantity3(e)} value={5}>
+																5
+															</option>
+															<option onClick={(e) => getQuantity3(e)} value={6}>
+																6
+															</option>
+															<option onClick={(e) => getQuantity3(e)} value={7}>
+																7
+															</option>
+															<option onClick={(e) => getQuantity3(e)} value={8}>
+																8
+															</option>
+															<option onClick={(e) => getQuantity3(e)} value={9}>
+																9
+															</option>
+															<option onClick={(e) => getQuantity3(e)} value={10}>
+																10
+															</option>
+														</select>
+													</td>
+													<td className="nombres" valign="middle" align="right">
+														{(tChildren = j.children * quantity3)}€
+													</td>
+												</tr>
+												<tr height="25px">
+													<td className="para">Tarifs</td>
+													<td className="para">
+														<select>
+															<option onClick={(e) => getQuantity2(e)} value={0}>
+																0
+															</option>
+															<option onClick={(e) => getQuantity2(e)} value={1}>
+																1
+															</option>
+															<option onClick={(e) => getQuantity2(e)} value={2}>
+																2
+															</option>
+															<option onClick={(e) => getQuantity2(e)} value={3}>
+																3
+															</option>
+															<option onClick={(e) => getQuantity2(e)} value={4}>
+																4
+															</option>
+															<option onClick={(e) => getQuantity2(e)} value={5}>
+																5
+															</option>
+															<option onClick={(e) => getQuantity2(e)} value={6}>
+																6
+															</option>
+															<option onClick={(e) => getQuantity2(e)} value={7}>
+																7
+															</option>
+															<option onClick={(e) => getQuantity2(e)} value={8}>
+																8
+															</option>
+															<option onClick={(e) => getQuantity2(e)} value={9}>
+																9
+															</option>
+															<option onClick={(e) => getQuantity2(e)} value={10}>
+																10
+															</option>
+														</select>
+													</td>
+													<td className="nombres" valign="middle" align="right">
+														{(tReduit = j.reduit * quantity2)}€
+													</td>
+												</tr>
+											</tbody>
+											<tfoot>
+												<tr height="25px">
+													<td className="para">TOTAL :</td>
+													<td id="recup" className="nombres" valign="middle" align="right">
+														<p value={totale}>{(totale = tReduit + tAdult + tChildren)}€</p>
+													</td>
+												</tr>
+												<tr height="25px">
+													<Button type="submit">Valider</Button>
+												</tr>
+											</tfoot>
+										</table>
+									</form>
+								</Col>
+							);
+						})}
+					</Row>
+				</Col>
+			</Container>
+		</div>
+	);
+};
 
 export default Achats;

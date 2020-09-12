@@ -4,18 +4,22 @@ import './tarifs.css';
 import places from '../assets/places.png'
 import NavigBar from './NavigBar';
 import bandeau from '../assets/bandeau3.jpg';
+import NavigBar2 from './NavigBar2';
 
 const Tarifs = () => {
+  const token = localStorage.usertoken
   return (
-    <>
-    <NavigBar />
+    <div>
+    {!token ?
+      <NavigBar /> :
+      <NavigBar2 />}
     <img className="bandeau" src={bandeau} alt="rond" />
     <Container>
       <Col md='12'>
         <Row className = "tarif">
           <Col md='6'>
-            <h3 className="textCenter">Tarifs</h3>
-            <p className="textCenter">TOUT PUBLIC ET SÉANCES À TARIF RÉDUIT</p>
+            <h3 className="textCenter">TARIFS</h3>
+            <p className="textCenter2">TOUT PUBLIC ET SÉANCES À TARIF RÉDUIT</p>
               <table>
                 <thead>
                   <tr>
@@ -71,7 +75,7 @@ const Tarifs = () => {
                   </tr>
                 </tbody>
               </table> 
-              <p>* Tarif unique Adulte et Enfant applicable uniquement sur les séances mentionnées TARIF RÉDUIT</p>
+              <p className="tarifRed">* Tarif unique Adulte et Enfant applicable uniquement sur les séances mentionnées TARIF RÉDUIT</p>
               <ul>
                 <li>
                 Entrée gratuite pour les enfants de - 3 ans, mais aucune place ne lui est attribuée. Les enfants de -3 ans sont à garder sur les genoux d'un adulte.
@@ -95,7 +99,7 @@ const Tarifs = () => {
         </Row>
       </Col>
     </Container>
-    </>
+    </div>
   );
 }
 
