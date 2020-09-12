@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { Table } from 'semantic-ui-react';
-import './myreservations.css';
 import axios from 'axios';
 
 const MyReservations = () => {
