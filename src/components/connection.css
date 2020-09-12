@@ -1,0 +1,18 @@
+.connec {
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	margin: 5%;
+}
+
+.boutonSecondaireModale,
+.btn,
+.btn-secondary {
+	margin: 2px;
+	background-color: #dc3545 !important;
+	border-color: #dc3545 !important;
+}
+
+h3 {
+	text-align: center;
+}

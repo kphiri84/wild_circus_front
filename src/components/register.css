@@ -1,0 +1,10 @@
+#connectForm {
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	margin: 5%;
+}
+
+h3 {
+	text-align: center;
+}

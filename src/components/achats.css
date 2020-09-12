@@ -1,38 +1,68 @@
 .ui.table {
-    width: 100% !important;
-    border-bottom: 1px solid black !important;
+	width: 100% !important;
+	border-bottom: 1px solid black !important;
 }
 
-.ui.table thead th{
-    background-color: #dc3545 !important;
-    color: white !important;
+.ui.table thead th {
+	background-color: #dc3545 !important;
+	color: white !important;
 }
 
-.recap{
-    /* border: 1px solid #C4C9C7 !important;
+.tour {
+	display: flex;
+	align-items: center;
+}
+
+.tour:hover {
+	display: flex;
+	align-items: center;
+	background-color: rgb(220, 53, 69, 0.8) !important;
+	color: white !important;
+}
+
+.recap {
+	/* border: 1px solid #C4C9C7 !important;
     border-radius: 2px; */
-    height: 220px;
-    margin-top: 20%;
+	height: 220px;
+	margin-top: 20%;
 }
 
-.center{
-    text-align: center;
+.center {
+	text-align: center;
+	margin-bottom: 10px;
 }
 
-.recaptable{
-    width: 400px;
-    position: fixed;
+.recaptable {
+	width: 400px;
 }
 
-td{
-    border: 0px solid black !important;
+td {
+	border: 0px solid black !important;
 }
 
-tr{
-    border: 0px solid black !important;
+tr {
+	border: 0px solid black !important;
 }
 
 .para,
 .nombres {
-    text-align: left !important;
+	text-align: left !important;
 }
+
+p {
+	font-size: 14px;
+	color: #dc3545;
+	font-weight: bold;
+}
+
+.tour:hover > p {
+	font-size: 14px;
+	font-weight: bold;
+	color: white;
+}
+
+/* p:hover {
+    font-size: 14px;
+    font-weight: bold;
+    color: white;
+} */
