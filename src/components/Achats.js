@@ -5,6 +5,7 @@ import NavigBar from './NavigBar';
 import NavigBar2 from './NavigBar2';
 import './achats.css';
 import axios from 'axios';
+import AuthService from '../services/auth.service';
 
 const Achats = () => {
 	const [ billet, setBillet ] = useState([]);
@@ -17,14 +18,21 @@ const Achats = () => {
 	const [ quantity, setQuantity ] = useState(0);
 	const [ quantity2, setQuantity2 ] = useState(0);
 	const [ quantity3, setQuantity3 ] = useState(0);
+	const [ currentUser, setCurrentUser ] = useState(undefined);
+
+	useEffect(() => {
+		const user = AuthService.getCurrentUser();
+
+		if (user) {
+			setCurrentUser(user);
+		}
+	}, []);
+
 	let tAdult = 0;
 	let tChildren = 0;
 	let tReduit = 0;
 	let totale = 0;
 
-	const getCategory = (e) => {
-		setCategory(e.target.value);
-	};
 	const getQuantity2 = (e) => {
 		setQuantity2(e.target.value);
 	};
@@ -51,16 +59,16 @@ const Achats = () => {
 			children: quantity3,
 			reduit: quantity2,
 			price: totale,
-			category: category
+			category: category,
+			userId: currentUser.id
 		};
 		console.log(newReser);
 		axios.post('http://localhost:3001/reservations', newReser).then(alert('Reservation bien enregistré'));
 	};
 
-	const token = localStorage.usertoken;
 	return (
 		<div className="App">
-			{!token ? <NavigBar /> : <NavigBar2 />}
+			{!currentUser ? <NavigBar /> : <NavigBar2 />}
 			<Container>
 				<Col md="12">
 					<Row className="tarif">
@@ -220,11 +228,9 @@ const Achats = () => {
 														<p value={totale}>{(totale = tReduit + tAdult + tChildren)}€</p>
 													</td>
 												</tr>
-												<tr height="25px">
-													<Button type="submit">Valider</Button>
-												</tr>
 											</tfoot>
 										</table>
+										<Button type="submit">Valider</Button>
 									</form>
 								</Col>
 							);

@@ -1,15 +1,26 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Form } from 'semantic-ui-react';
 import './contact.css';
 import NavigBar from './NavigBar';
 import NavigBar2 from './NavigBar2';
 import bandeau from '../assets/bandeau1.jpg';
 
+import AuthService from '../services/auth.service';
+
 const Contact = () => {
-	const token = localStorage.usertoken;
+	const [ currentUser, setCurrentUser ] = useState(undefined);
+
+	useEffect(() => {
+		const user = AuthService.getCurrentUser();
+
+		if (user) {
+			setCurrentUser(user);
+		}
+	}, []);
+
 	return (
 		<div className="App">
-			{!token ? <NavigBar /> : <NavigBar2 />}
+			{!currentUser ? <NavigBar /> : <NavigBar2 />}
 			<img className="bandeau" src={bandeau} alt="rond" />
 			<h3 className="decal">CONTACT</h3>
 			<p className="decale">

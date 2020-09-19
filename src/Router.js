@@ -13,7 +13,6 @@ import Register from './components/Register';
 import Achats from './components/Achats';
 
 const Router = () => {
-	const token = localStorage.usertoken;
 	return (
 		<Switch>
 			<Route exact path="/" component={Landing} />

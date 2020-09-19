@@ -33,3 +33,23 @@
 	width: auto;
 	margin-top: 50px;
 }
+
+.navbar-expand-md .navbar-collapse{
+	height: 100px;
+}
+
+@media (min-width: 320px) and (max-width: 480px) {
+	.logo {
+		height: 80px;
+		width: auto;
+		margin-top: 0;
+	}
+	.navbar-collapse {
+		background-color: #ffc107 !important;
+	}
+	.navbar-expand-md .navbar-collapse{
+		height: 270px;
+		width: 100%;
+	}
+}
+ 

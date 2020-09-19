@@ -66,3 +66,9 @@ p {
     font-weight: bold;
     color: white;
 } */
+
+@media (min-width: 320px) and (max-width: 480px) {
+    .recaptable {
+		width: 200px;
+	}
+  }

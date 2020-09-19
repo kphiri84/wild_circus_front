@@ -76,3 +76,14 @@ th {
 th {
 	color: grey;
 }
+
+@media (min-width: 320px) and (max-width: 480px) {
+	.crond {
+		width: 100%;
+	}
+
+	.bandeau {
+		width: 100%;
+		height: 250px;
+	}
+}

@@ -1,4 +1,4 @@
-import React from 'react';
+import React , { useState, useEffect } from 'react';
 import { Container, Row, Col } from 'reactstrap';
 import './tarifs.css';
 import places from '../assets/places.png'
@@ -6,11 +6,23 @@ import NavigBar from './NavigBar';
 import bandeau from '../assets/bandeau3.jpg';
 import NavigBar2 from './NavigBar2';
 
+import AuthService from '../services/auth.service';
+
 const Tarifs = () => {
-  const token = localStorage.usertoken
+
+  const [currentUser, setCurrentUser] = useState(undefined);
+
+  useEffect(() => {
+    const user = AuthService.getCurrentUser();
+
+    if (user) {
+      setCurrentUser(user);
+    }
+  }, []);
+  
   return (
     <div>
-    {!token ?
+    {!currentUser ?
       <NavigBar /> :
       <NavigBar2 />}
     <img className="bandeau" src={bandeau} alt="rond" />

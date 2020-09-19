@@ -1,13 +1,20 @@
 import React, { useEffect, useState } from 'react';
-import { Table } from 'semantic-ui-react';
-<<<<<<< HEAD
+import { Table } from 'reactstrap';
 import './myreservations.css';
-=======
->>>>>>> f2586d415fa3c0e69dbfd2bfb3f828344f7183c9
 import axios from 'axios';
+import AuthService from '../services/auth.service';
 
 const MyReservations = () => {
 	const [ reservation, setReservation ] = useState([]);
+	const [ currentUser, setCurrentUser ] = useState(undefined);
+
+	useEffect(() => {
+		const user = AuthService.getCurrentUser();
+
+		if (user) {
+			setCurrentUser(user);
+		}
+	}, []);
 
 	useEffect(() => {
 		getReservation();
@@ -17,33 +24,33 @@ const MyReservations = () => {
 	};
 	return (
 		<div className="App">
-			<Table celled>
-				<Table.Header>
-					<Table.Row>
-						<Table.HeaderCell>Reservation</Table.HeaderCell>
-						<Table.HeaderCell>Date</Table.HeaderCell>
-						<Table.HeaderCell>Heure</Table.HeaderCell>
-						<Table.HeaderCell>Categories</Table.HeaderCell>
-						<Table.HeaderCell>Nombres de personnes</Table.HeaderCell>
-						<Table.HeaderCell>Prix</Table.HeaderCell>
-					</Table.Row>
-				</Table.Header>
+			<Table>
+				<thead>
+					<tr>
+						<th>Reservation</th>
+						<th>Date</th>
+						<th>Heure</th>
+						<th>Categories</th>
+						<th>Nombres de personnes</th>
+						<th>Prix</th>
+					</tr>
+				</thead>
 
-				{reservation.map((e) => (
-					<Table.Body>
-						<Table.Row>
-							<Table.Cell>{e.id}</Table.Cell>
-							<Table.Cell>{e.reservationDate}</Table.Cell>
-							<Table.Cell>16h-18h</Table.Cell>
-							<Table.Cell>{e.category}</Table.Cell>
-							<Table.Cell>
+				{reservation.filter((f) => f.userId === currentUser.id).map((e) => (
+					<tbody>
+						<tr>
+							<td>{e.id}</td>
+							<td>{e.reservationDate}</td>
+							<td>16h-18h</td>
+							<td>{e.category}</td>
+							<td>
 								<p className="reserv">Adultes : {e.adults}</p>
 								<p className="reserv">Enfants : {e.children}</p>
 								<p className="reserv">Tarifs réduits : {e.reduit}</p>
-							</Table.Cell>
-							<Table.Cell>{e.price} €</Table.Cell>
-						</Table.Row>
-					</Table.Body>
+							</td>
+							<td>{e.price} €</td>
+						</tr>
+					</tbody>
 				))}
 			</Table>
 		</div>

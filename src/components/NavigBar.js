@@ -1,12 +1,16 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { Navbar, NavbarBrand, Nav, NavItem, NavLink, Button } from 'reactstrap';
+import React, { useState } from 'react';
+import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap';
 import './nav.css';
 import logo from '../assets/wildlogo.png';
 
 const NavigBar = (props) => {
+	const [ isOpen, setIsOpen ] = useState(false);
+	const toggle = () => setIsOpen(!isOpen);
+
 	return (
 		<Navbar color="warning" light expand="md">
+			<NavbarToggler onClick={toggle} />
+				<Collapse isOpen={isOpen} navbar>
 			<NavbarBrand href="/">
 				<img className="logo" src={logo} alt="logo" />
 			</NavbarBrand>
@@ -27,9 +31,7 @@ const NavigBar = (props) => {
 			<NavItem>
 				<NavLink href="/register">S'INSCRIRE</NavLink>
 			</NavItem>
-			<Link to="/reservations">
-				<Button color="danger">Reservations</Button>
-			</Link>
+			</Collapse>
 		</Navbar>
 	);
 };

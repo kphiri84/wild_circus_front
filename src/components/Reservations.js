@@ -1,15 +1,24 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import NavigBar from './NavigBar';
 import './reservations.css';
-import { Icon } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import NavigBar2 from './NavigBar2';
 
+import AuthService from '../services/auth.service';
+
 const Reservations = () => {
-	const token = localStorage.usertoken;
+	const [ currentUser, setCurrentUser ] = useState(undefined);
+
+	useEffect(() => {
+		const user = AuthService.getCurrentUser();
+
+		if (user) {
+			setCurrentUser(user);
+		}
+	}, []);
 	return (
 		<div className="App">
-			{!token ? <NavigBar /> : <NavigBar2 />}
+			{!currentUser ? <NavigBar /> : <NavigBar2 />}
 			<div className="bandeau" />
 			<div className="superpose">
 				<div>

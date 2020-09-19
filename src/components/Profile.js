@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import './profile.css';
 import { Container, Col } from 'reactstrap';
-import jwt_decode from 'jwt-decode';
+
+import AuthService from '../services/auth.service';
 
 const Profile = (props) => {
 	const [ details, setDetails ] = useState({
-		firstname: '',
-		lastname: '',
+		pseudo: '',
 		email: ''
 	});
 
@@ -15,13 +15,11 @@ const Profile = (props) => {
 	}, []);
 
 	const getProfil = () => {
-		const token = localStorage.usertoken;
-		const decoded = jwt_decode(token);
+		const currentUser = AuthService.getCurrentUser();
 
 		setDetails({
-			firstname: decoded.firstname,
-			lastname: decoded.lastname,
-			email: decoded.email
+			pseudo: currentUser.pseudo,
+			email: currentUser.email
 		});
 	};
 
@@ -53,49 +51,49 @@ const Profile = (props) => {
 		<Container>
 			<Col className="profile_page">
 				<table>
-					<tr className="entete">Nom </tr>
-					<tr className="valeur">{details.lastname}</tr>
-					<tr className="entete">Prénom </tr>
-					<tr className="valeur">{details.firstname}</tr>
-					<tr className="entete">Adresse Mail </tr>
-					<tr className="valeur">
+					<tbody>
+						<tr className="entete">Pseudo</tr>
+						<tr className="valeur">{details.pseudo}</tr>
+						<tr className="entete">Adresse Mail</tr>
+						<tr className="valeur">
+							{modif ? (
+								<input
+									type="text"
+									value={modifiedProfile.mail}
+									onChange={(e) =>
+										setModifiedProfile({
+											...modifiedProfile,
+											mail: e.target.value
+										})}
+								/>
+							) : (
+								details.email
+							)}
+						</tr>
 						{modif ? (
-							<input
-								type="text"
-								value={modifiedProfile.mail}
-								onChange={(e) =>
-									setModifiedProfile({
-										...modifiedProfile,
-										mail: e.target.value
-									})}
-							/>
+							<div>
+								<tr className="entete">Nouveau mot de passe</tr>
+								<tr className="valeur">
+									<input
+										type="password"
+										className={validPW ? 'valid' : 'invalid'}
+										value={typedPW}
+										onChange={(e) => setTypedPW(e.target.value)}
+									/>
+								</tr>
+								<tr className="entete">Valider mot de passe</tr>
+								<tr>
+									<input
+										type="password"
+										className={validPW ? 'valid' : 'invalid'}
+										onChange={(e) => changePW(e)}
+									/>
+								</tr>
+							</div>
 						) : (
-							details.email
+							''
 						)}
-					</tr>
-					{modif ? (
-						<div>
-							<tr className="entete">Nouveau mot de passe </tr>
-							<tr className="valeur">
-								<input
-									type="password"
-									className={validPW ? 'valid' : 'invalid'}
-									value={typedPW}
-									onChange={(e) => setTypedPW(e.target.value)}
-								/>
-							</tr>
-							<tr className="entete">Valider mot de passe </tr>
-							<tr>
-								<input
-									type="password"
-									className={validPW ? 'valid' : 'invalid'}
-									onChange={(e) => changePW(e)}
-								/>
-							</tr>{' '}
-						</div>
-					) : (
-						''
-					)}
+					</tbody>
 				</table>
 				<div>
 					{modif ? (
