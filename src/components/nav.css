@@ -24,6 +24,14 @@
 	padding-left: 15px;
 }
 
+.ButtonTransparent{
+	background-color: transparent !important;
+}
+
+.ButtonTransparent:hover{
+	background-color: transparent !important;
+}
+
 .power {
 	margin-right: 15px !important;
 }

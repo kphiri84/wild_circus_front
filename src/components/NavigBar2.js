@@ -50,9 +50,9 @@ const NavigBar2 = (props) => {
 							closeIcon
 							open={open}
 							trigger={
-								<a href="#">
+								<Button className="ButtonTransparent">
 									<Icon name="power off" className="power" />
-								</a>
+								</Button>
 							}
 							onClose={() => setOpen(false)}
 							onOpen={() => setOpen(true)}
