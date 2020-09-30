@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap';
+import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem } from 'reactstrap';
 import './nav.css';
 import logo from '../assets/wildlogo.png';
 
@@ -17,20 +17,20 @@ const NavigBar = (props) => {
 			</NavbarBrand>
 			<Nav className="mr-auto" navbar>
 				<NavItem>
-					<NavLink href="/">ACCUEIL</NavLink>
+					<Link to="/">ACCUEIL</Link>
 				</NavItem>
 				<NavItem>
 					<Link to="/Tarifs">TARIFS</Link>
 				</NavItem>
 				<NavItem>
-					<NavLink href="/contact">CONTACT</NavLink>
+					<Link to="/contact">CONTACT</Link>
 				</NavItem>
 			</Nav>
 			<NavItem>
-				<NavLink href="/connection">SE CONNECTER</NavLink>
+				<Link to="/connection">SE CONNECTER</Link>
 			</NavItem>
 			<NavItem>
-				<NavLink href="/register">S'INSCRIRE</NavLink>
+				<Link to="/register">S'INSCRIRE</Link>
 			</NavItem>
 			</Collapse>
 		</Navbar>

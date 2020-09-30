@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink, NavbarText } from 'reactstrap';
+import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavbarText } from 'reactstrap';
 import { Button, Icon, Modal, Header } from 'semantic-ui-react';
 import './nav.css';
 import logo from '../assets/wildlogo.png';
@@ -26,16 +26,16 @@ const NavigBar2 = (props) => {
 					</NavbarBrand>
 					<Nav className="mr-auto" navbar>
 						<NavItem>
-							<NavLink href="/">ACCUEIL</NavLink>
+							<Link to="/">ACCUEIL</Link>
 						</NavItem>
 						<NavItem>
-							<NavLink href="/Tarifs">TARIFS</NavLink>
+							<Link to="/Tarifs">TARIFS</Link>
 						</NavItem>
 						<NavItem>
-							<NavLink href="/compte">MON COMPTE</NavLink>
+							<Link to="/compte">MON COMPTE</Link>
 						</NavItem>
 						<NavItem>
-							<NavLink href="/contact">CONTACT</NavLink>
+							<Link to="/contact">CONTACT</Link>
 						</NavItem>
 					</Nav>
 					<NavbarText>
