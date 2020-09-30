@@ -20,7 +20,7 @@ const MyReservations = () => {
 		getReservation();
 	}, []);
 	const getReservation = () => {
-		axios.get('http://localhost:3001/reservations').then((response) => setReservation(response.data));
+		axios.get('https://wild-circus-app.herokuapp.com/reservations').then((response) => setReservation(response.data));
 	};
 	return (
 		<div className="App">

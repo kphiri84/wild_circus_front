@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:3001/api/auth/';
+const API_URL = 'https://wild-circus-app.herokuapp.com/api/auth/';
 
 const register = (pseudo, email, password) => {
 	return axios.post(API_URL + 'signup', {

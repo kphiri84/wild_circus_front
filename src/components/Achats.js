@@ -46,7 +46,7 @@ const Achats = () => {
 	};
 
 	const getBillet = () => {
-		axios.get('http://localhost:3001/billets').then((response) => setBillet(response.data));
+		axios.get('https://wild-circus-app.herokuapp.com/billets').then((response) => setBillet(response.data));
 	};
 
 	const postRegister = (e) => {
@@ -63,7 +63,7 @@ const Achats = () => {
 			userId: currentUser.id
 		};
 		console.log(newReser);
-		axios.post('http://localhost:3001/reservations', newReser).then(alert('Reservation bien enregistré'));
+		axios.post('https://wild-circus-app.herokuapp.com/reservations', newReser).then(alert('Reservation bien enregistré'));
 	};
 
 	return (
