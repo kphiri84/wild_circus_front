@@ -19,7 +19,7 @@ const NavigBar = (props) => {
 					<NavLink href="/">ACCUEIL</NavLink>
 				</NavItem>
 				<NavItem>
-					<NavLink href="/Tarifs">TARIFS</NavLink>
+					<Link to="/Tarifs">TARIFS</Link>
 				</NavItem>
 				<NavItem>
 					<NavLink href="/contact">CONTACT</NavLink>
