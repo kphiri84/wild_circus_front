@@ -20,7 +20,7 @@ const NavigBar = (props) => {
 					<Link to="/">ACCUEIL</Link>
 				</NavItem>
 				<NavItem>
-					<Link to="/Tarifs">TARIFS</Link>
+					<Link to="/tarifs">TARIFS</Link>
 				</NavItem>
 				<NavItem>
 					<Link to="/contact">CONTACT</Link>

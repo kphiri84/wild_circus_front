@@ -29,7 +29,7 @@ const NavigBar2 = (props) => {
 							<Link to="/">ACCUEIL</Link>
 						</NavItem>
 						<NavItem>
-							<Link to="/Tarifs">TARIFS</Link>
+							<Link to="/tarifs">TARIFS</Link>
 						</NavItem>
 						<NavItem>
 							<Link to="/compte">MON COMPTE</Link>
